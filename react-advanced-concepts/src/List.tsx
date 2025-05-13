@@ -1,22 +1,26 @@
-import { Children, cloneElement, useState, type PropsWithChildren } from "react"
+import { useState } from "react"
 
-export default function List({ children }: any) {
+export default function List({ items, renderItem }: ListProps) {
     const [selectedIndex, setSelectedIndex] = useState(0);
     return (
         <div className="List">
-            {Children.map(children, (child, index) => {
-                return cloneElement(child, {
-                    isHighlighted: index === selectedIndex
-                })
+            {items.map((item, index) => {
+                const isHighlighted = selectedIndex === index;
+                return renderItem(item, isHighlighted)
             })}
             <hr />
             <button onClick={() => {
                 setSelectedIndex(i => {
-                    return (i+1) % Children.count(children)
+                    return (i+1) % items.length
                 })
             }}> 
                 Next
             </button>
         </div>
     )
+}
+
+type ListProps = {
+    items: any[]
+    renderItem: (item: any, isHighlighted: Boolean) => React.ReactNode
 }

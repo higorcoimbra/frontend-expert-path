@@ -5,14 +5,19 @@ import List from './List';
 
 function App() {
   return (
-    <List>
-        {products.map(product => 
+    <List
+        items={products}
+        renderItem={(product: any, isHighlighted: Boolean) => {
+          return (
             <Row
-                key={product.id}
-                title={product.title}
-            ></Row>
-        )}
-    </List>
+              key={product.id}
+              title={product.title}
+              isHighlighted={isHighlighted}
+            >
+            </Row>
+          )
+        }}
+    />
   );
 }
 
