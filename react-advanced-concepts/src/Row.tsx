@@ -1,8 +1,4 @@
-import { useContext } from "react"
-import { HighlightContext } from "./HighlightContext"
-
-export default function Row({ title }: RowProps) {
-    const isHighlighted = useContext(HighlightContext);
+export default function Row({ title, isHighlighted }: RowProps) {
     return (
         <div className={[
             'Row',
@@ -15,4 +11,5 @@ export default function Row({ title }: RowProps) {
 
 type RowProps = {
     title: string
+    isHighlighted: Boolean;
 }
