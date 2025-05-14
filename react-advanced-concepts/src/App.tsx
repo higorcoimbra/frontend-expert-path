@@ -7,12 +7,11 @@ function App() {
   return (
     <List
         items={products}
-        renderItem={(product: any, isHighlighted: Boolean) => {
+        renderItem={(product: any) => {
           return (
             <Row
               key={product.id}
               title={product.title}
-              isHighlighted={isHighlighted}
             >
             </Row>
           )
