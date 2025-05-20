@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Form</title>
+</head>
+<body>
+    <form id="your-form">
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title"/>
+
+        <label for="body">Content</label>
+        <input id="body" type="text" name="body"/>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script>
+    const form = document.querySelector('#your-form')
+    const url = 'https://jsonplaceholder.typicode.com/posts'
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const data = new FormData(e.target);
+        console.log(new URLSearchParams(data));
+        fetch(url, {
+            method: 'POST',
+            body: new URLSearchParams(data)
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    })
+</script>
+</html>
